@@ -281,6 +281,8 @@ $(() => {
 
     $('.All_menu').click(() => {
         console.log(123);
+        console.log("오늘은 여기까지 일어나서 다시해야지");
+
     })
 
 
