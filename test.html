@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<style>
+
+    .test1 { 
+        width: 1000px;
+        height: 1000px;
+    }
+
+    .test2 { 
+        width: 500px;
+        height: 500px;
+    }
+
+    .img {
+        position: relative;
+    }
+
+
+</style>
+<body>
+    <button class="a">Go</button>
+    <img class="test1 img" src="/map.jpg" alt="map">
+    <script src="/common/js/jquery-3.4.1.min.js"></script>
+    <script>
+        const locations = "/json/location.json";
+        let item = [];
+
+        $.getJSON(locations, (data) =>{
+            item = data;
+        });
+
+        $('.a').click(() => {
+            item.forEach(item => {
+                let div = `<div class="ss" style="position: absolute; top:${item.X}px; left : ${item.Y}px; width: 100px; height: 80px; background-color: aqua; display:block; z-index:999; ">안녕</div>`;
+                $('.img').css({ "z-index" : '-1' });
+                $('.img').append(div);
+            })
+        })
+
+    </script>
+</body>
+</html>
