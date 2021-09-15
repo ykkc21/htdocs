@@ -28,20 +28,22 @@ $(() => {
             $(".img").css({ "width": "100%", "height": "100%", "background-image": "url('/map.jpg')", "background-size": "100% 100%" });
         },
         AncestryPsition: function (num = 1) {
-            const image = $(".img")[0],
-                locationData = this.location,
-                breadName = this.data;
+            const locationData = this.location,
+                breadName = this.data,
+                MapW = $(".Map")[0].clientWidth * 1,
+                MapH = $(".Map")[0].clientHeight * 1;
+
             breadName.forEach(items => {
                 locationData.forEach(item => {
-                    const top = image.clientTop = item.Y * num,
-                        left = image.clientLeft = item.X * num;
+                    const num1 = (item.X / MapW) * 100,
+                        num2 = (item.Y / MapH) * 100;
 
-                    if (items.name === item.name) {
-                        const div = `<div data_name= "${item.name}" data_location="${items.location}" data_time="${items.time}" data_etc="${items.etc}" class="Icon PositionIcon" style=' width:40px; height: 60px; position:absolute; background-image: url("/Icon.png"); background-size: 100% 100%; top:${top}px; left:${left}px; '></div>`;
+                    if (items.name == item.name) {
+                        const div = `<div data_name= "${items.name}" data_location="${items.location}" data_time="${items.time}" data_etc="${items.etc}" class="Icon PositionIcon" style=' width:40px; height: 60px; position: absolute; background-image: url("/Icon.png"); background-size: 100% 100%; top:${num1}%; left:${num2}%; '></div>`;
                         $(".img").append(div);
                     }
-                });
-            });
+                })
+            })
 
             $(".Icon").click(function (e) {
                 e.preventDefault();
@@ -130,8 +132,8 @@ $(() => {
         Map.num -= 0.1;
         Map.LV -= 1;
         $(".level").text(`${Map.LV}LV`);
-        if (Map.LV == 1) {
-            $(".level").text(`${Map.LV}LV`);
+        if (Map.LV == 2) {
+            $(".level").text(`1LV`);
         }
         Map.reduction(Map.size);
         Map.AncestryPsition(Map.num);
@@ -156,7 +158,9 @@ $(() => {
     // 빵리스트 
 
     const list_menu = {
+        count: 0,
         num: 1,
+        keep:[],
         data: [],
         menus: [],
         init: function () {
@@ -181,6 +185,7 @@ $(() => {
                 $('.list_box').append(box);
             });
 
+            //빵집보기 버튼
             $(".info_breadHome").click((e) => {
                 const TargetBox = $(e.target).parents(".breadHome_list_box");
                 const name = $(TargetBox).attr('data_name');
@@ -224,18 +229,17 @@ $(() => {
 
             });
 
+            //상품보기 버튼
             $('.info_bread').click((e) => {
-                console.log(123);
-                const TargetBox = $(e.target).parents(".breadHome_list_box");
+                      const TargetBox = $(e.target).parents(".breadHome_list_box");
                 const name = $(TargetBox).attr('data_name');
 
                 $('.bread_info').html("");
 
                 this.menus.forEach(item => {
                     item.forEach(data => {
-                        if(data.name == name) {
-                            console.log(data);
-                            const image = `<div class="checkBread">
+                        if (data.name == name) {
+                                               const image = `<div class="checkBread">
                             <img class="image" src="/breadmenu/${data.image}">
                             <div>메뉴이름:${data.menuname}</div>
                             <div>설명:${data.etc}</div>
@@ -250,9 +254,9 @@ $(() => {
 
 
                 $('.bread_info').dialog({
-                    title : "모든 빵",
-                    width : "600",
-                    height : '500',
+                    title: "모든 빵",
+                    width: "600",
+                    height: '500',
                     show: {
                         effect: "blind",
                         duration: 1000
@@ -271,19 +275,51 @@ $(() => {
                 <img src="/breadmenu/${item.image}" >
                 <h1 class="breadName" style="float:left; font-size:30px">${item.menuname}</h1>
                 <p>가격:${item.price}</p>
-                <button>전체보기</button>
                 </div>`;
                 $('.menu_list_box').append(box);
             });
+
+            $(".bread_list_box").draggable({
+                revert: true,
+            });
+
+            $(".bread_list_box").click((e) => {
+                const TargetBox = $(e.target);
+                if(window.event.shiftKey) {
+                    $(ㅅ)
+                }
+            })
+
+            $('.wishBox').droppable({
+                drop: function(e,i) {
+                    console.log(list_menu.keep);
+                }
+            })
         },
     };
 
 
     $('.All_menu').click(() => {
-        console.log(123);
-        console.log("오늘은 여기까지 일어나서 다시해야지");
+        list_menu.menus.forEach(item => {
+            item.forEach(data => {
+                const image = `<div class="s_box">
+                <img class="image" src="/breadmenu/${data.image}">
+                <div>메뉴이름:${data.menuname}</div>
+                <div>설명:${data.etc}</div>
+                <div>가격:${data.price}</div>
+                <div>보관방법:${data.keep}</div>
+                <div>open:${data.time}</div>
+                </div>`;
+                $('.All_menu_box').append(image);
+            })
+        });
 
-    })
+        $('.All_menu_box').dialog({
+            title: "모든메뉴",
+            width: 950,
+            height: 600
+        });
+    });
 
 
     // 키패트
@@ -306,9 +342,7 @@ $(() => {
                 let num = $(obj).attr("data") * 1;
                 let data = $(obj).attr("data");
 
-                console.log(num);
-
-                $('.keyValue').val(this.newText);
+                       $('.keyValue').val(this.newText);
 
                 if (data == 'Reset') {
                     $('.keypad').html("");
