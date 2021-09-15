@@ -286,7 +286,12 @@ $(() => {
             $(".bread_list_box").click((e) => {
                 const TargetBox = $(e.target);
                 if(window.event.shiftKey) {
-                    $(ㅅ)
+                    console.log(123);
+                    $(TargetBox).removeClass("show");
+                    $(TargetBox).addClass("show");
+                    
+                }else {
+                    $(TargetBox).removeClass("show");
                 }
             })
 

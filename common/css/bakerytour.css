@@ -139,6 +139,11 @@ header>ul>li>a {
     float: left;
 }
 
+.show {
+    background-color: aqua;
+    border: 2px solid red;
+}
+
 
 
 #show1:checked ~ .warp > .container > .list_box { display: block; }
