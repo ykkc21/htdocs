@@ -158,7 +158,7 @@ $(() => {
     // 빵리스트 
 
     const list_menu = {
-        count: 0,
+        id:1,
         num: 1,
         keep:[],
         data: [],
@@ -170,7 +170,9 @@ $(() => {
                 obj.DrawBreadHomeList(data);
             });
             $.getJSON(menus, (data) => {
-                obj.menus.push(data);
+                data = data.map((data,idx) => {
+                    return { ... data, id:list_menu.id++, count :1  };
+                });
                 obj.DrawBreadList(data);
             });
         },
@@ -271,7 +273,8 @@ $(() => {
         },
         DrawBreadList: function (data) {
             data.forEach(item => {
-                const box = `<div class="bread_list_box">
+                list_menu.menus.push(item);
+                const box = `<div class="bread_list_box" item_id="${item.id}">
                 <img src="/breadmenu/${item.image}" >
                 <h1 class="breadName" style="float:left; font-size:30px">${item.menuname}</h1>
                 <p>가격:${item.price}</p>
@@ -297,10 +300,30 @@ $(() => {
 
             $('.wishBox').droppable({
                 drop: function(e,i) {
-                    console.log(i);
+                    const Draggable = i.draggable[0],
+                    ItemId = $(Draggable).attr('item_id'),
+                    SeletItem = list_menu.SelectItem(ItemId),
+                    obj = list_menu.ItemOverlap(ItemId);
+
+                    list_menu.keep.push(SeletItem);
+
+                    if(obj) {
+                        alert("중복")
+                        obj.count ++;
+                        console.log(obj);
+                    }
+
                 }
             })
         },
+        SelectItem:function(idx) {
+            const id = list_menu.menus.find((e,i) => { return e.id == idx });
+            return id;
+        },
+        ItemOverlap:function (idx) { 
+            const id = list_menu.keep.find((e,i) => { return e.id == idx });
+            return id;
+        }
     };
 
 
