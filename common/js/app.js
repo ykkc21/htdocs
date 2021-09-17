@@ -329,6 +329,7 @@ $(() => {
             const set = new Set(list_menu.keep);
             const item = [...set];
             console.log(item);
+            console.log(123);
         }
 
     };
