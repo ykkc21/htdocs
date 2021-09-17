@@ -91,10 +91,17 @@ header>ul>li>a {
 
 .wishBox {
     width: 48%;
-    height: 500px;
+    height: 900px;
     border: 2px solid #ddd;
     float: left;
     margin-left: 20px;
+}
+
+.wishBox > .show_Item {
+    width: 100%;
+    height: auto;
+    margin-top: 50%;
+    overflow-y: scroll;
 }
 
 .imageBox  {

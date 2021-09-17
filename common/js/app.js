@@ -158,7 +158,7 @@ $(() => {
     // 빵리스트 
 
     const list_menu = {
-        count: 0,
+        id: 1,
         num: 1,
         keep:[],
         data: [],
@@ -170,8 +170,14 @@ $(() => {
                 obj.DrawBreadHomeList(data);
             });
             $.getJSON(menus, (data) => {
-                obj.menus.push(data);
+                data = data.map((data, idx) => {
+                    return { ...data, id:list_menu.id++, count : 1 };
+                });
+                data.forEach(item => {
+                    list_menu.menus.push(item);  
+                })
                 obj.DrawBreadList(data);
+                obj.KeepItemDraw();
             });
         },
         DrawBreadHomeList: function (data) {
@@ -270,8 +276,9 @@ $(() => {
 
         },
         DrawBreadList: function (data) {
+
             data.forEach(item => {
-                const box = `<div class="bread_list_box">
+                const box = `<div item_Id="${item.id}" class="bread_list_box">
                 <img src="/breadmenu/${item.image}" >
                 <h1 class="breadName" style="float:left; font-size:30px">${item.menuname}</h1>
                 <p>가격:${item.price}</p>
@@ -286,21 +293,44 @@ $(() => {
             $(".bread_list_box").click((e) => {
                 const TargetBox = $(e.target);
                 if(window.event.shiftKey) {
-                    console.log(123);
-                    $(TargetBox).removeClass("show");
                     $(TargetBox).addClass("show");
-                    
                 }else {
-                    $(TargetBox).removeClass("show");
+                    $('.bread_list_box').removeClass("show");
                 }
-            })
+            });
 
             $('.wishBox').droppable({
                 drop: function(e,i) {
-                    console.log(list_menu.keep);
+                    const Draggable = i.draggable[0],
+                    ItemId = $(Draggable).attr('item_id'),
+                    SeletItem = list_menu.SeletItem(ItemId),
+                    obj = list_menu.ItemOverlap(ItemId);
+
+                    list_menu.keep.push(SeletItem);
+
+                    if(obj) {
+                        alert("중복");
+                        obj.count ++;
+                    }
                 }
-            })
+            });
+
         },
+        SeletItem:function(id) {
+            const idx = list_menu.menus.find((e,i) => { return e.id == id  });
+            return idx;
+        },
+        ItemOverlap:function(id) {
+
+            const idx = list_menu.keep.find((e,i) => {  return e.id == id });
+            return idx;
+        },
+        KeepItemDraw:function () {
+            const set = new Set(list_menu.keep);
+            const item = [...set];
+            console.log(item);
+        }
+
     };
 
 
