@@ -297,7 +297,7 @@ $(() => {
 
             $('.wishBox').droppable({
                 drop: function(e,i) {
-                    console.log(list_menu.keep);
+                    console.log(i);
                 }
             })
         },
