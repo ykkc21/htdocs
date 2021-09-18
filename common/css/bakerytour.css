@@ -1,159 +1,163 @@
 * {
-    margin: 0;
-    padding: 0;
-    text-decoration: none;
-    list-style: none;
-    box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+  text-decoration: none;
+  list-style: none;
+  box-sizing: border-box;
 }
 
-.input{
-    display: none;
+.input {
+  display: none;
 }
 .warp {
-    width: 100%;
+  width: 100%;
 }
 
 header {
-    max-width: 1140px;
-    width: 100%;
-    height: 100px;
-    margin: 0 auto;
-    box-shadow: 5px 5px 5px #ddd;
+  max-width: 1140px;
+  width: 100%;
+  height: 100px;
+  margin: 0 auto;
+  box-shadow: 5px 5px 5px #ddd;
 }
 
-header>ul {
-    width: 100%;
-    height: 100%;
-    text-align: center;
+header > ul {
+  width: 100%;
+  height: 100%;
+  text-align: center;
 }
 
-header>ul>li {
-    display: inline-block;
-    padding: 25px;
+header > ul > li {
+  display: inline-block;
+  padding: 25px;
 }
 
-header>ul>li>a {
-    display: block;
-    color: #000;
-    font-size: 40px;
+header > ul > li > a {
+  display: block;
+  color: #000;
+  font-size: 40px;
 }
 
-.container  {
-    max-width: 1140px;
-    width: 100%;
-    height: auto;
-    margin: 0 auto;
+.container {
+  max-width: 1140px;
+  width: 100%;
+  height: auto;
+  margin: 0 auto;
 }
 
 .container > .list_box {
-    width: 100%;
-    height: auto;
-    display: none;
-    float: left;
+  width: 100%;
+  height: auto;
+  display: none;
+  float: left;
 }
 
 .container > .menu_list_box {
-    width: 50%;
-    height: auto;
-    float: left;
-    display: none;
+  width: 50%;
+  height: auto;
+  float: left;
+  display: none;
 }
 
 .bread_list_box {
-    width: 100%;
-    height: 220px;
-    float: left;
-    box-shadow: 5px 5px 5px 5px #ddd;
-    margin-bottom: 20px;
+  width: 100%;
+  height: 220px;
+  float: left;
+  box-shadow: 5px 5px 5px 5px #ddd;
+  margin-bottom: 20px;
 }
 
 .bread_list_box > img {
-    float: left;
-    width: 50%;
-    height: 100%;
+  float: left;
+  width: 50%;
+  height: 100%;
 }
 
-
 .breadHome_list_box {
-    width: 46%;
-    height: 220px;
-    float: left;
-    box-shadow: 5px 5px 5px 5px #ddd;
-    margin: 20px;
+  width: 46%;
+  height: 220px;
+  float: left;
+  box-shadow: 5px 5px 5px 5px #ddd;
+  margin: 20px;
 }
 
 .breadHome_list_box > img {
-    float: left;
-    width: 50%;
-    height: 100%;
+  float: left;
+  width: 50%;
+  height: 100%;
 }
 
-
 .wishBox {
-    width: 48%;
-    height: 900px;
-    border: 2px solid #ddd;
-    float: left;
-    margin-left: 20px;
+  width: 48%;
+  height: 900px;
+  border: 2px solid #ddd;
+  float: left;
+  margin-left: 20px;
 }
 
 .wishBox > .show_Item {
-    width: 100%;
-    height: auto;
-    margin-top: 50%;
-    overflow-y: scroll;
+  width: 100%;
+  height: auto;
+  margin-top: 50%;
+  overflow-y: scroll;
 }
 
-.imageBox  {
-    width: 80px;
-    height: 80px;
-    float: left;
-    margin: 15px;
+.imageBox {
+  width: 80px;
+  height: 80px;
+  float: left;
+  margin: 15px;
+  opacity: 0;
 }
 .imageBox > img {
-    width: 100%;
-    height: 100%;
-} 
+  width: 100%;
+  height: 100%;
+}
 
 .checkBread {
-    width: 100%;
-    height: 250px;
+  width: 100%;
+  height: 250px;
 }
 
 .checkBread > img {
-    width: 50%;
-    height: 100%;
-    float: left;
+  width: 50%;
+  height: 100%;
+  float: left;
 }
 
 .checkBread > div {
-    width: 50%;
-    float: left;
+  width: 50%;
+  float: left;
 }
 
-
 .All_menu_box > .s_box {
-    width: 434px;
-    height: 250px;
-    float: left;
-    box-shadow: 5px 5px 5px 5px rgb(158, 158, 158);
-    margin: 10px;
+  width: 434px;
+  height: 250px;
+  float: left;
+  box-shadow: 5px 5px 5px 5px rgb(158, 158, 158);
+  margin: 10px;
 }
 
 .All_menu_box > .s_box > img {
-    width: 50%;
-    height: 100%;
-    float: left;
+  width: 50%;
+  height: 100%;
+  float: left;
 }
 
 .show {
-    background-color: aqua;
-    border: 2px solid red;
+  background-color: aqua;
+  border: 2px solid red;
 }
 
-
-
-#show1:checked ~ .warp > .container > .list_box { display: block; }
-#show1:checked ~ .warp > .container > .wishBox { display: none; }
-#show2:checked ~ .warp > .container > .menu_list_box { display: block; }
-#show2:checked ~ .warp > .container > .wishBox { display: block; }
+#show1:checked ~ .warp > .container > .list_box {
+  display: block;
+}
+#show1:checked ~ .warp > .container > .wishBox {
+  display: none;
+}
+#show2:checked ~ .warp > .container > .menu_list_box {
+  display: block;
+}
+#show2:checked ~ .warp > .container > .wishBox {
+  display: block;
+}
