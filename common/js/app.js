@@ -306,9 +306,12 @@ $(() => {
       });
 
       $(".bread_list_box").click((e) => {
+        const TargetBox = e.target;
         if (window.event.shiftKey) {
+          list_menu.box.push(TargetBox);
           $(TargetBox).removeClass("show");
           $(TargetBox).addClass("show");
+          console.log(list_menu.box);
         } else {
           $(TargetBox).removeClass("show");
         }
